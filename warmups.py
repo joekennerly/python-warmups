@@ -1,3 +1,38 @@
+# 11/13/19 ------------------
+"""You are given an array (which will have a length of at least 3, but could be very large) containing integers. The array is either entirely comprised of odd integers or entirely comprised of even integers except for a single integer N. Write a method that takes the array as an argument and returns this "outlier" N."""
+
+def find_outlier(integers):
+
+    # check whether the first two elems are both odd or even
+    if integers[0] % 2 != integers[1] % 2:
+
+        # if they have no parity, check which is wrong based off the third elem
+        # return the first if the third does not match...
+        if integers[2] % 2 == integers[1] % 2:
+            return integers[0]
+
+        # ...otherwise return the second
+        else:
+            return integers[1]
+
+    # if all three have parity, loop through the list and compare each int based off the first elem
+    for integer in integers:
+        if integer % 2 != integers[0] % 2:
+            return integer
+
+integers = [2, 4, 6, 8, 10, 3] #should return 3
+print(find_outlier(integers))
+
+
+
+
+
+
+
+
+
+
+
 # 11/12/19 ------------------
 """Function that takes in a string of one or more words, and returns the same string, but with all five or more letter words reversed. Strings passed in will consist of only letters and spaces. Spaces will be included only when more than one word is present."""
 def spin_words(sentence):
