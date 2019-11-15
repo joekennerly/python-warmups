@@ -1,3 +1,50 @@
+# 11/15/19 ------------------
+"""Given: an array containing hashes of names
+Return: a string formatted as a list of names separated by commas except for the last two names, which should be separated by an ampersand."""
+
+# My version
+def namelist(names):
+    if len(names) == 0:
+        return('')
+    elif len(names) == 1:
+        for name in names:
+            for value in name.values():
+                return(value)
+    else:
+        list_of_names = []
+        for name in names:
+            for key, value in name.items():
+                list_of_names.append(value)
+
+        name_string = ", ".join(list_of_names[:-1]) + f' & {list_of_names[-1]}'
+        return(name_string)
+
+# namelist([ {'name': 'Bart'}, {'name': 'Jimmy'}, {'name': 'Lisa'}, {'name': 'Maggie'} ])
+# namelist([ {'name': 'Bart'}, {'name': 'Jimmy'}])
+# namelist([{'name': 'Bart'}])
+# namelist([])
+
+# Another Version
+def namelist(names):
+    l = []
+    if len(names) == 0:
+        return ''
+    else:
+        for name in names:
+            l.append(''.join(name.values()))
+        str = ', '
+        if len(l) == 1:
+            return l[0]
+        else:
+            return str.join(l[:-1]) + ' & ' + l[-1]
+
+# One More Version
+def namelist(names):
+  return ", ".join([name["name"] for name in names])[::-1].replace(",", "& ",1)[::-1]
+
+
+
+
 # 11/13/19 ------------------
 """You are given an array (which will have a length of at least 3, but could be very large) containing integers. The array is either entirely comprised of odd integers or entirely comprised of even integers except for a single integer N. Write a method that takes the array as an argument and returns this "outlier" N."""
 
@@ -20,8 +67,8 @@ def find_outlier(integers):
         if integer % 2 != integers[0] % 2:
             return integer
 
-integers = [2, 4, 6, 8, 10, 3] #should return 3
-print(find_outlier(integers))
+# integers = [2, 4, 6, 8, 10, 3] #should return 3
+# print(find_outlier(integers))
 
 
 
